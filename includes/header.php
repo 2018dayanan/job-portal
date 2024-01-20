@@ -21,7 +21,7 @@ define("APPURL","http://localhost/joboard");
     <link rel="stylesheet" href="<?php echo APPURL; ?>/css/owl.carousel.min.css">
     <link rel="stylesheet" href="<?php echo APPURL; ?>/css/animate.min.css">
     <link rel="stylesheet" href="<?php echo APPURL; ?>/css/quill.snow.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="<?php echo APPURL; ?>/css/style.css">    
   </head>
@@ -62,19 +62,28 @@ define("APPURL","http://localhost/joboard");
              
             
               <li><a href="<?php echo APPURL; ?>/contact.php">Contact</a></li>
-              <li class="d-lg-inline"><a href="post-job.html"><span class="mr-2">+</span> Post a Job</a></li>
-
+              
               <?php if(isset($_SESSION['username'])) : ?>
-
+                <?php if(isset($_SESSION['type']) AND $_SESSION['type'] == "Company") :?>
+                <li class="d-lg-inline"><a href="<?php echo APPURL; ?>/jobs/post-job.php"><span class="mr-2">+</span> Post a Job</a></li>
+                <?php endif; ?>
                 <li class="dropdown nav-item">
                   <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <?php echo $_SESSION['username']; ?>
+                    <?php echo $_SESSION['username']; ?>
+                    <i class="fa-solid fa-caret-down pl-1"></i>
                   </a>
   
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       
                       <a class="dropdown-item" href="<?php echo APPURL; ?>/users/public-profile.php?id=<?php echo $_SESSION['id']; ?>">Public Profile</a>
                       <a class="dropdown-item" href="<?php echo APPURL; ?>/users/update-profile.php?upd_id=<?php echo $_SESSION['id']; ?>">Update Profile</a>
+                      <?php if(isset($_SESSION['type']) AND $_SESSION['type'] == 'Worker') : ?>
+                      <a class="dropdown-item" href="<?php echo APPURL; ?>/users/saved_jobs.php?id=<?php echo $_SESSION['id']; ?>">Saved Job</a>
+                      <?php endif; ?>
+                      <?php if(isset($_SESSION['type']) AND $_SESSION['type'] == 'Company') : ?>
+                      <a class="dropdown-item" href="<?php echo APPURL; ?>/users/show-applicants.php?id=<?php echo $_SESSION['id']; ?>">Show Applicants</a>
+                      <?php endif; ?>
+                      <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="<?php echo APPURL; ?>/auth/logout.php">Logout</a>
                     </div>
                 </li>

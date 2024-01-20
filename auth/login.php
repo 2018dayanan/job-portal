@@ -23,6 +23,9 @@
                     $_SESSION['username'] = $select['username'];
                     $_SESSION['id'] = $select['id'];
                     $_SESSION['type'] = $select['type'];
+                    $_SESSION['email'] = $select['email'];
+                    $_SESSION['image'] = $select['img'];
+                    $_SESSION['cv'] = $select['cv'];
                     header("location:".APPURL."");
 
                 }else{
