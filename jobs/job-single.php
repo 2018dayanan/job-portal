@@ -50,18 +50,7 @@
  }
  
 //  saving jobs
-//  if(isset($_POST['submit_save'])){
-//   $job_id = $_POST['job_id'];
-//   $worker_id = $_POST['worker_id'];
 
-//   $save_jobs = $conn ->prepare("INSERT INTO saved (job_id,worker_id) VALUES (:job_id,:worker_id)");
-//   $save_jobs -> execute([
-//     ':job_id' => $job_id,
-//     ':worker_id' => $worker_id,
-
-//   ]);
-//   echo "<script>alert('job saved successfully');</script>";
-//  }
 
 //  checking for worker application   
  $checking_for_application = $conn->query("SELECT * FROM job_application WHERE worker_id = '$_SESSION[id]' AND job_id ='$id'");
@@ -71,6 +60,12 @@
 $checking_for_saved_jobs = $conn -> query("SELECT * FROM saved WHERE worker_id = '$_SESSION[id]' AND job_id = '$id'");
 $checking_for_saved_jobs->execute();
 
+
+
+// Getting Categories
+$categories = $conn->query("SELECT * FROM categories");
+$categories->execute();
+$AllCategories = $categories->fetchALL(PDO::FETCH_OBJ);
 ?>
 
     <!-- HOME -->
@@ -252,7 +247,7 @@ $checking_for_saved_jobs->execute();
                 <li class="mb-2"><strong class="text-black">Gender: </strong><?php echo $row->gender; ?></li>
                 <li class="mb-2"><strong class="text-black">Application Deadline: </strong> <?php echo $row->application_deadline; ?></li>
               </ul>
-            </div>
+          </div>
 
             <div class="bg-light p-3 border rounded">
               <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Share</h3>
@@ -261,6 +256,16 @@ $checking_for_saved_jobs->execute();
                 <a href="https://twitter.com/intent/tweet?text=<?php echo $row->job_title; ?>&url=<?php echo APPURL; ?>/jobs/job-single.php?id=<?php echo $row->id;?>" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
                 <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo APPURL; ?>/jobs/job-single.php?id=<?php echo $row->id;?>" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
               </div>
+            </div>
+            <!-- Categories-->
+           
+            <div class="bg-light p-3 border rounded mt-4">
+              <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Categories</h3>
+              <ul class="list-unstyled pl-3 mb-0">
+                <?php foreach ($AllCategories as $category ) : ?>
+                <li class="mb-2"><strong class="text-black"><?php echo $category->name; ?></strong></li>
+                <?php endforeach; ?>
+              </ul>
             </div>
 
           </div>

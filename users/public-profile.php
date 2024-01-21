@@ -44,7 +44,7 @@
                     
                     <div class="text-center mt-3">
                         <?php if(isset($_SESSION['type']) AND $_SESSION['type'] == 'Worker') : ?>
-                        <a href="" class="btn btn-success text-white" role="button" download>Download CV</a>
+                        <a href="<?php echo APPURL;?>/users/user-cvs/<?php echo $profile->cv; ?>" class="btn btn-success text-white" role="button" download>Download CV</a>
                         <?php endif; ?>
                         
 

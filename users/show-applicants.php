@@ -64,7 +64,7 @@ if(isset($_GET['id'])){
 
 
                 <div class="job-listing-meta">
-                    <a style="text-decoration: none;" class="" href="<?php echo APPURL; ?>/users/public-profile.php?id=<?php echo $jobApp->worker_id; ?>"><h2><?php echo $jobApp->email; ?></h2></a>
+                    <a style="text-decoration: none;" class="" href="<?php echo APPURL; ?>/users/public-profile.php?id=<?php echo $jobApp->worker_id; ?>"><h5><?php echo $jobApp->email; ?></h5></a>
                 </div>
 
                 <div class="job-listing-meta">
