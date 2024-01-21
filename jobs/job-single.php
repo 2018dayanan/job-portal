@@ -263,7 +263,7 @@ $AllCategories = $categories->fetchALL(PDO::FETCH_OBJ);
               <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Categories</h3>
               <ul class="list-unstyled pl-3 mb-0">
                 <?php foreach ($AllCategories as $category ) : ?>
-                <li class="mb-2"><strong class="text-black"><?php echo $category->name; ?></strong></li>
+                <a target="_blank" href="<?php echo APPURL; ?>/categories/show-jobs.php?name=<?php echo ucfirst($category-> name); ?>"><li class="mb-2"><strong class="text-black"><?php echo $category->name; ?></strong></li></a>
                 <?php endforeach; ?>
               </ul>
             </div>
