@@ -56,13 +56,14 @@ define("APPURL","http://localhost/joboard");
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-xl-block ml-0 pl-0">
               <li><a href="<?php echo APPURL; ?>" class="nav-link active">Home</a></li>
-              <li><a href="<?php echo APPURL; ?>/about.php">About</a></li>
+              <!-- <li><a href="<?php// echo APPURL; ?>/about.php">About</a></li> -->
               
            
              
             
               <li><a href="<?php echo APPURL; ?>/contact.php">Contact</a></li>
               <li><a href="<?php echo APPURL; ?>/gerneral/workers.php">Workers</a></li>
+              <li><a href="<?php echo APPURL; ?>/gerneral/companies.php">Companies</a></li>
               
               <?php if(isset($_SESSION['username'])) : ?>
                 <?php if(isset($_SESSION['type']) AND $_SESSION['type'] == "Company") :?>
