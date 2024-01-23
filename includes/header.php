@@ -62,6 +62,7 @@ define("APPURL","http://localhost/joboard");
              
             
               <li><a href="<?php echo APPURL; ?>/contact.php">Contact</a></li>
+              <li><a href="<?php echo APPURL; ?>/gerneral/workers.php">Workers</a></li>
               
               <?php if(isset($_SESSION['username'])) : ?>
                 <?php if(isset($_SESSION['type']) AND $_SESSION['type'] == "Company") :?>
