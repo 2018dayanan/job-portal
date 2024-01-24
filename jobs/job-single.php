@@ -52,13 +52,19 @@
 //  saving jobs
 
 
-//  checking for worker application   
- $checking_for_application = $conn->query("SELECT * FROM job_application WHERE worker_id = '$_SESSION[id]' AND job_id ='$id'");
- $checking_for_application ->execute(); 
+ if(isset($_SESSION['id'])){
+  //  checking for worker application   
 
-// checking for save job
-$checking_for_saved_jobs = $conn -> query("SELECT * FROM saved WHERE worker_id = '$_SESSION[id]' AND job_id = '$id'");
-$checking_for_saved_jobs->execute();
+   $checking_for_application = $conn->query("SELECT * FROM job_application WHERE worker_id = '$_SESSION[id]' AND job_id ='$id'");
+   $checking_for_application ->execute(); 
+   
+  // checking for save job
+
+   $checking_for_saved_jobs = $conn -> query("SELECT * FROM saved WHERE worker_id = '$_SESSION[id]' AND job_id = '$id'");
+   $checking_for_saved_jobs->execute();
+
+ }
+
 
 
 
@@ -91,7 +97,7 @@ $AllCategories = $categories->fetchALL(PDO::FETCH_OBJ);
           <div class="col-lg-8 mb-4 mb-lg-0">
             <div class="d-flex align-items-center">
               <div class="border p-2 d-inline-block mr-3 rounded">
-                <img src="../users/user-images/<?php echo $_SESSION['image']; ?>" alt="Image" class="img-fluid" width="100">
+                <img src="../users/user-images/<?php echo $row->company_image; ?>" alt="Image" class="img-fluid" width="100">
               </div>
               <div>
                 <h2><?php echo $row->job_title; ?></h2>
@@ -104,7 +110,7 @@ $AllCategories = $categories->fetchALL(PDO::FETCH_OBJ);
             </div>
           </div>
     
-        <div class="row">
+        <div class="row mt-3">
           <div class="col-lg-8">
             <div class="mb-5">
               <figure class="mb-5"><img src="../images/job_single_img_1.jpg" alt="Image" class="img-fluid rounded"></figure>
@@ -246,6 +252,7 @@ $AllCategories = $categories->fetchALL(PDO::FETCH_OBJ);
                 <li class="mb-2"><strong class="text-black">Salary: </strong><?php echo $row->salary; ?></li>
                 <li class="mb-2"><strong class="text-black">Gender: </strong><?php echo $row->gender; ?></li>
                 <li class="mb-2"><strong class="text-black">Application Deadline: </strong> <?php echo $row->application_deadline; ?></li>
+                <li class="mb-2"><strong class="text-black">Job Category: </strong><?php echo ucfirst($row->job_category); ?></li>
               </ul>
           </div>
 
