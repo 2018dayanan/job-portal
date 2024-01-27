@@ -4,10 +4,7 @@
 <?php
     if(isset($_POST['submit'])){
         if(empty($_POST['job-title']) OR empty($_POST['job-region']) OR empty($_POST['job-type'])){
-            
-            
-            echo "<script>alert('One or more inputs are empty')</script>";
-
+            header('location: index.php');
         }else{
             $job_title= $_POST['job-title'];
             $job_region= $_POST['job-region'];
@@ -25,8 +22,6 @@
 
 
         }
-    }else{
-        header('location: index.php');
     }
        
 
