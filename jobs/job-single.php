@@ -9,7 +9,7 @@
     $row = $select->fetch(PDO::FETCH_OBJ);
 
 
-  // Getting Related jobs
+    // Getting Related jobs
     $related_jobs = $conn-> query("SELECT * FROM jobs WHERE job_category = '$row->job_category' AND status = 1 AND id !='$id'");
     $related_jobs -> execute();
     $related_job = $related_jobs -> fetchALL(PDO::FETCH_OBJ);
@@ -18,9 +18,9 @@
     $job_count = $conn-> query("SELECT COUNT(*) as job_count FROM jobs WHERE job_category = '$row->job_category' AND status = 1 AND id !='$id'");
     $job_count -> execute();
     $job_num = $job_count -> fetch(PDO::FETCH_OBJ);
+  }else{
+    header("location: ".APPURL."/404.php");
   }
-
-
   // Applying for job
   if(isset($_POST['submit_application'])){
     $username = $_POST['username'];
@@ -49,6 +49,7 @@
         header("location:".APPURL."/jobs/job-single.php?id=".$id."");
  }
  
+ 
 //  saving jobs
 
 
@@ -62,11 +63,7 @@
 
    $checking_for_saved_jobs = $conn -> query("SELECT * FROM saved WHERE worker_id = '$_SESSION[id]' AND job_id = '$id'");
    $checking_for_saved_jobs->execute();
-
  }
-
-
-
 
 // Getting Categories
 $categories = $conn->query("SELECT * FROM categories");

@@ -32,7 +32,8 @@
 
 
     } else {
-        echo "404";
+       header("location: ".APPURL."/404.php");
+        
     }
 
     if(isset($_POST['submit'])) {
