@@ -13,9 +13,16 @@
             $job_region= $_POST['job-region'];
             $job_type= $_POST['job-type'];
 
+            //Trending keywords
+            $insert = $conn->prepare("INSERT INTO searches (keyword) VALUES (:keyword)");
+            $insert ->execute([
+                ':keyword' => $job_title
+            ]);
+
             $search = $conn->query("SELECT * FROM jobs WHERE job_title LIKE '%$job_title%' AND job_region LIKE '%$job_region%' AND job_type LIKE '%$job_type%' AND status =1 ");
-            $search->exescute();
+            $search->execute();
             $searchRes = $search->fetchAll(PDO::FETCH_OBJ);
+
 
         }
     }else{
