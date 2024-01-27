@@ -19,21 +19,14 @@
 
     if(isset($_GET['id'])) {
         $id = $_GET['id'];
-
-
         $select = $conn->query("SELECT * FROM jobs WHERE id = '$id'");
         $select->execute();
-
         $singleJob = $select->fetch(PDO::FETCH_OBJ);
-
         if(isset($_SESSION['id']) AND $singleJob->company_id !== $_SESSION['id']) {
             header("location: ".APPURL."");
         }
-
-
     } else {
        header("location: ".APPURL."/404.php");
-        
     }
 
     if(isset($_POST['submit'])) {
