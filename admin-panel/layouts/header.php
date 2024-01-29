@@ -1,3 +1,8 @@
+<?php
+session_start();
+define("ADMINURL","http://localhost/joboard/admin-panel"); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,44 +24,50 @@
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
+      <?php if(isset($_SESSION['email'])) : ?>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav side-nav" >
           <li class="nav-item">
-            <a class="nav-link text-white" style="margin-left: 20px;" href="index.html">Home
+            <a class="nav-link text-white" style="margin-left: 20px;" href="<?php echo ADMINURL; ?>">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admins/admins.html" style="margin-left: 20px;">Admins</a>
+            <a class="nav-link" href="<?php echo ADMINURL; ?>/admins/admins.php" style="margin-left: 20px;">Admins</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="categories-admins/show-categories.html" style="margin-left: 20px;">Categories</a>
+            <a class="nav-link" href="<?php echo ADMINURL; ?>/categories-admins/show-categories.php" style="margin-left: 20px;">Categories</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="jobs-admins/show-jobs.html" style="margin-left: 20px;">Jobs</a>
+            <a class="nav-link" href="<?php echo ADMINURL; ?>/jobs-admins/show-jobs.php" style="margin-left: 20px;">Jobs</a>
           </li>
-        
+        <?php endif; ?>
         </ul>
         <ul class="navbar-nav ml-md-auto d-md-flex">
+      <?php if(isset($_SESSION['email'])) : ?>
+
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="admins/login-admins.html">login
+            <a class="nav-link" href="<?php echo ADMINURL; ?>">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              username
+             <?php echo $_SESSION['email']; ?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" href="<?php echo ADMINURL; ?>/admins/logout-admins.php">Logout</a>
+            </div>
               
           </li>
+          <?php else: ?>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo ADMINURL; ?>/admins/login-admins.php">login
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <?php endif; ?>
+          
                           
           
         </ul>
