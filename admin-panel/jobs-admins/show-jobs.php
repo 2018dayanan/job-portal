@@ -31,8 +31,12 @@
                     <td><?php echo $job->job_title; ?></td>
                     <td><?php echo $job->job_category; ?></td>
                     <td><?php echo $job->company_name; ?></td>
-                     <td><a href="<?php echo ADMINURL; ?>/jobs-admins/status.php?id=<?php echo $job->id; ?>" class="btn btn-success  text-center ">verfied</a></td>
-                     <td><a href="<?php echo ADMINURL; ?>/jobs-admins/delete.php?id=<?php echo $job->id; ?>" class="btn btn-danger  text-center ">delete</a></td>
+                    <?php if($job->status == 1) : ?>
+                      <td><a href="<?php echo ADMINURL; ?>/jobs-admins/status.php?id=<?php echo $job->id; ?>&status=<?php echo $job->status; ?>" class="btn btn-danger  text-center ">unverfied</a></td>
+                    <?php else : ?>
+                      <td><a href="<?php echo ADMINURL; ?>/jobs-admins/status.php?id=<?php echo $job->id; ?>&status=<?php echo $job->status; ?>" class="btn btn-success  text-center ">verfied</a></td>
+                    <?php endif; ?>  
+                      <td><a href="<?php echo ADMINURL; ?>/jobs-admins/delete-jobs.php?id=<?php echo $job->id; ?>" class="btn btn-danger  text-center ">delete</a></td>
                   </tr>
                   <?php endforeach; ?>
 
