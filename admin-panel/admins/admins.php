@@ -2,6 +2,9 @@
 <?php require "../../config/config.php"; ?> 
 
 <?php
+if(!isset($_SESSION['email'])){
+  header("location:".ADMINURL."/admins/login-admins.php");
+ }
   $select = $conn->query("SELECT * FROM admins");
   $select ->execute();
   $admins = $select->fetchAll(PDO::FETCH_OBJ);
