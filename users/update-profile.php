@@ -5,13 +5,6 @@
  if(!isset($_SESSION['username'])){
     header("location:../index.php");
    }
-  
-
-
-
-
-
-
 ?>
 <?php 
     if(isset($_GET['upd_id'])){
@@ -39,7 +32,7 @@
                 $linkedin = $_POST['linkedin'];
                 $img = $_FILES['img']['name'];
                 $cv = $_FILES['cv']['name'];
-    $row->$type == "Worker" ? $cv = $_FILES['cv']['name'] : $cv = 'NULL';
+    $row->type == "Worker" ? $cv = $_FILES['cv']['name'] : $cv = 'NULL';
                  $dir_img = 'user-images/'.basename($img);
                  $dir_cv = 'user-cvs/'.basename($cv);
     
