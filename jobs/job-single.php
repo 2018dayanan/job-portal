@@ -316,9 +316,5 @@ $AllCategories = $categories->fetchALL(PDO::FETCH_OBJ);
 
       </div>
     </section>
-    
-
-  
-    
 <?php require "../includes/footer.php"; ?>
     
